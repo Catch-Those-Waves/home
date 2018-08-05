@@ -11,6 +11,31 @@
 
 	  gtag('config', 'UA-123366783-1');
 	</script>
+	
+	<link href="styles/main.css" rel="stylesheet" media="screen, projection">
+<link href="styles/transitions.css" rel="stylesheet" media="screen, projection">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="scripts/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="scripts/utils.js"></script>
+<script type="text/javascript" src="scripts/custom_survey.js"></script>
+<script type="text/javascript" src="scripts/jquery.columnizer.min.js"></script>
+<script type="text/javascript" src="scripts/html5slider.js"></script>
+<script>
+ $(document).ready(function() {
+   $('.column').columnize({ columns: 2 });
+ 	$("#review").click(function () { 
+		
+		var partySize = localStorage.getItem('partySizeResult');
+		partySize = "<strong>Party Size:</strong> " + partySize;
+		$("#question1").html(partySizeResult);
+		
+		var availability = localStorage.getItem('availability');
+		availability = "<strong>Availability:</strong> " + availability;
+		$("#question2").html(theArtistLength);
+		
+	});
+});
+</script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,15 +96,24 @@
 		<div id="survey-frame">
 			<div id="form" method="post" action="thanks.htm"> <!--this could be a php file that executes server side code isntead of just a thank you page-->
 				<div class ="question1">
-					<div class="inner-container">
-						<h2>How large is your party?</h2>
-						<p>q1 additional info</p>
-					</div>
+				<div class="innerContainer">
+					<h2>How large is your party?</h2>
+					<p>
+						<input type="range" min="0" max="120" value="1" id="partySizeSlider" onchange="printValue('partySizeResult','partySizeResult')" />
+					</p>
+					<p>
+						<input type="text" id="partySizeResult" placeholder="Move slider from 0 to 120 passengers" />
+					</p>
+					<p class="show-buttons">
+						<input type="button" class="show-right alignLeft" value="Previous" />
+						<input type="button" class="show-top alignRight" value="Next" />
+					</p>
+				</div>
 				</div>
 				<div class ="question2">
 					<div class="inner-container">
 						<h2>What is your availability?</h2>
-						<p>q2 additional info</p>
+						<p>Tickets can be purchased up to 4 months in advance.</p>
 					</div>
 				</div>
 				<div class ="review-before-submit">
